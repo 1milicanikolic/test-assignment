@@ -56,6 +56,7 @@ describe('testing api', () => {
         })
 
         cy.request({
+            failOnStatusCode: false,
             method: 'GET',
             url:`https://gorest.co.in/public/v2/users/${userId}`,
             headers: { 
