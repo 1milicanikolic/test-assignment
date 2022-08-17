@@ -10,7 +10,7 @@ describe('task1', () => {
     let lastname = "Kala"
     let postalcode = "21000"
 
-    before('visit website and login', () => {
+    beforeEach('visit website and login', () => {
         cy.visit('/')
         loginPage.login(
             Cypress.env('VALID_USER_NAME'),
@@ -31,10 +31,10 @@ describe('task1', () => {
     })
 
     it('check the shopping cart and remove first item', () => {
-        cy.buildForSecondTest(                      //buildForSecondTest is a command you can find in support/command.js
-            Cypress.env('VALID_USER_NAME'),         //I used it because after each test this app logs the user out and goes to url www.saucedemo.com 
-            Cypress.env('VALID_USER_PASSWORD')      //and it doesn't store the previous state.
-        )
+        cy.buildForSecondTest()     //buildForSecondTest is a command you can find in support/command.js
+                                    //I used it because after each test this app logs the user out and goes to url www.saucedemo.com 
+                                    //and it doesn't store the previous state.
+        
         productsPage.shoppingCart1.click()
         cy.url().should('contains', '/cart')
         shoppingCartPage.items.should('have.length', 2)
@@ -46,11 +46,6 @@ describe('task1', () => {
     })
 
     it('checkout page', () => {
-        cy.visit('/')
-        loginPage.login(
-            Cypress.env('VALID_USER_NAME'),
-            Cypress.env('VALID_USER_PASSWORD')
-        ) 
         productsPage.shoppingCart1.click()
         shoppingCartPage.checkoutBtn.click()
         checkoutPage.fillInCheckoutForm(firstname, lastname, postalcode)

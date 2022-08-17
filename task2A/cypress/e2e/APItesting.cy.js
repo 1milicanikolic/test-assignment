@@ -20,7 +20,7 @@ describe('testing api', () => {
             }
         }).then((res) => {
             expect(res.status).to.eq(201)
-            userId = res.body.id
+            userId = res.body.id 
             expect(res.body).has.property('name', 'user')
             expect(res.body).has.property('gender', 'female')
         })

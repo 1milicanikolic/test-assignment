@@ -23,17 +23,5 @@ class ProductsPage{
         return cy.get('.inventory_item_name')
     }
 
-    get itemDesc() {
-        return cy.get('.inventory_details_desc.large_size')
-    }
-
-    get addToCart() {
-        return cy.get('#add-to-cart-sauce-labs-bike-light')
-    }
-
-    addItemToCart(itemName) {
-        cy.contains('.inventory_item', itemName).contains('Add to cart').click()
-    }
-
 }
 export const productsPage = new ProductsPage();
