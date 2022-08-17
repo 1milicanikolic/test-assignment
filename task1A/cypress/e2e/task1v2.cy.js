@@ -2,6 +2,7 @@ import { checkoutPage } from "../page_objects/CheckoutPage"
 import { loginPage } from "../page_objects/LoginPage"
 import { productsPage } from "../page_objects/ProductsPage"
 import { shoppingCartPage } from "../page_objects/ShoppingCartPage"
+import { bikelightPage } from "../page_objects/BikelightPage"
 
 describe('task1', () => {
 
@@ -23,9 +24,9 @@ describe('task1', () => {
         productsPage.shoppingCartBadge.should('exist').and('contain.text', '1') //making sure badge does exist and shows 1 item in the cart
         productsPage.item.contains('Sauce Labs Bike Light').click()
         cy.url().should('contains', '/inventory-item.html?id=0') // making sure the user is redirected onto the right page
-        productsPage.itemDesc.should('be.visible') //verifying the description is adequate
+        bikelightPage.itemDesc.should('be.visible') //verifying the description is adequate
             .and('have.text',"A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.")
-        productsPage.addToCart.click()
+        bikelightPage.addToCart.click()
         productsPage.shoppingCart1.click()
         cy.url().should('contains', '/cart')
 
