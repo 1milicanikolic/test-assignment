@@ -13,17 +13,20 @@ describe('testing api', () => {
                 'Authorization': 'Bearer ' + accessToken
             },
             body: {
-                "name":"user",
+                'name':'user',
                 "email": email,
                 "gender":"female",
                 "status":"active"
             }
         }).then((res) => {
             expect(res.status).to.eq(201)
-            userId = res.body.id 
             expect(res.body).has.property('name', 'user')
             expect(res.body).has.property('gender', 'female')
+            expect(res.body.id).to.not.be.null
+            expect(res.body.id).to.not.be.undefined
+            userId = res.body.id 
         })
+        console.log(email)
     })
 
     it('update user details', () => {
@@ -43,7 +46,9 @@ describe('testing api', () => {
             expect(res.status).to.eq(200)
             expect(res.body).has.property('name', 'newName')
             expect(res.body).has.property('status', 'inactive')
+            console.log(res.body.email)
         })
+        
     })
 
     it('delete the user', () => {
